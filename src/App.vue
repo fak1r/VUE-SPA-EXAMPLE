@@ -21,6 +21,19 @@
         <div class="row">
           <div class="col col-sm-3 menu">
             <ul class="list-group">
+              <router-link v-for="item in menu"
+                           :key="item.route"
+                           :to="{name: item.route}"
+                           v-slot="{ route, isExactActive, navigate }"
+                           :custom="true"
+              >
+                <li class="list-group-item" :class="isExactActive ? 'active' : '' ">
+                  <a :href="route.fullPath" @click="navigate">
+                    {{ item.title }}
+                  </a>
+                </li>
+              <!-- v-slot + :custom are used to change active class <li>                     -->
+              </router-link>
             </ul>
           </div>
           <div class="col col-sm-9">
@@ -34,14 +47,12 @@
 
 <script>
 
-  import { mapGetters } from 'vuex';
-
   export default {
     data: () => ({
         menu: [
-          { route: 'catalog', title: 'Products' },
-          { route: 'cart', title: 'Cart' },
-          { route: 'checkout', title: 'Checkout' }
+          { route: 'Catalog', title: 'Products' },
+          { route: 'Cart', title: 'Cart' },
+          { route: 'Checkout', title: 'Checkout' }
         ]
       }),
   }
