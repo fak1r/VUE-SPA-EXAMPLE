@@ -8,9 +8,11 @@
 </template>
 
 <script>
-export default {
-  name: "Cart"
-}
+
+  export default {
+    name: "Cart"
+  }
+
 </script>
 
 <style scoped>

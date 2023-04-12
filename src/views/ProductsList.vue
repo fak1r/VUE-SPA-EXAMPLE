@@ -1,11 +1,17 @@
 <template>
-
+  {{ all }}
 </template>
 
 <script>
-export default {
-  name: "ProductsList"
-}
+  import { mapGetters } from 'vuex'
+
+  export default {
+    name: "ProductsList",
+    computed: {
+      ...mapGetters('products', ["all"])
+    }
+  }
+
 </script>
 
 <style scoped>
