@@ -8,7 +8,7 @@
           </div>
           <div class="col col-sm-3">
             <div class="alert alert-default">
-              <div>In Cart: ...</div>
+              <div>In Cart: {{ cartCnt }}</div>
               <div>Total: ...</div>
             </div>
           </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 
   export default {
     data: () => ({
@@ -55,6 +56,9 @@
           { route: 'Checkout', title: 'Checkout' }
         ]
       }),
+    computed:{
+      ...mapGetters('cart', {cartCnt: 'length'})
+    }
   }
 </script>
 

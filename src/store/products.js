@@ -4,7 +4,8 @@ export default {
         items: GetProducts()
     },
     getters: {
-        all: state => state.items
+        all: state => state.items,
+        item: state => id => state.items.find(pr => pr.id === id)
     }
 }
 
