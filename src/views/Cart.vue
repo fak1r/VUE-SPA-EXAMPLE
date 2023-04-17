@@ -3,7 +3,9 @@
     <h1>Cart</h1>
     <hr>
     <p>products</p>
-    Order now
+    <router-link :to="{name: 'Checkout'}">
+      <button type="button" class="btn btn-primary">Order now</button>
+    </router-link>
   </div>
 </template>
 

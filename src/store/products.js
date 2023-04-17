@@ -15,5 +15,7 @@ function GetProducts(){
         {"id":56, "title": "Pants", "price": "16"},
         {"id":61, "title": "Panama", "price": "8"},
         {"id":62, "title": "Shoes", "price": "30"},
+        {"id":71, "title": "Smartphone", "price": "200"},
+        {"id":72, "title": "Notebook", "price": "500"},
     ]
 }

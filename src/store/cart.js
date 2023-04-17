@@ -1,5 +1,3 @@
-import products from "@/store/products";
-
 export default {
     namespaced: true, // used in order to give unic names for all actions, mutations, getters: 'cart/name'
     state: {
@@ -7,7 +5,14 @@ export default {
     },
     getters: {
         length: state => state.products.length,
-        has: state => id => state.products.some(pr => pr.id === id)
+        has: state => id => state.products.some(pr => pr.id === id),
+        product(state, getters, rootState, rootGetters) {
+            return state.products.map(pr => {
+                let item = rootGetters["products/item"](pr.id) // get items in "store/products.js" by id's
+                return {...pr, ...item}
+            })
+        },
+        total: (state, getters) => getters.product.reduce((total, pr) => total + +pr.price, 0)
     },
     mutations:{
         add(state, id){
