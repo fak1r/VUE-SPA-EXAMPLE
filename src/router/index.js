@@ -3,6 +3,7 @@ import Cart from '@/views/Cart';
 import Checkout from '@/views/Checkout';
 import ProductsList from '@/views/ProductsList';
 import Product from '@/views/Product';
+import E404 from "@/views/E404";
 
 const routes = [
   {
@@ -24,8 +25,12 @@ const routes = [
     path: '/product/:id',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'E404',
+    component: E404
   }
-
 ]
 
 const router = createRouter({
