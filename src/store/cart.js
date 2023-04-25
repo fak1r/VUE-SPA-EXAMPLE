@@ -6,13 +6,13 @@ export default {
     getters: {
         length: state => state.products.length,
         has: state => id => state.products.some(pr => pr.id === id),
-        product(state, getters, rootState, rootGetters) {
+        productsInCart(state, getters, rootState, rootGetters) {
             return state.products.map(pr => {
                 let item = rootGetters["products/item"](pr.id) // get items in "store/products.js" by id's
                 return {...pr, ...item}
             })
         },
-        total: (state, getters) => getters.product.reduce((total, pr) => total + +pr.price, 0)
+        total: (state, getters) => getters.productsInCart.reduce((total, pr) => total + pr.price * pr.cnt, 0)
     },
     mutations:{
         add(state, id){
@@ -20,6 +20,10 @@ export default {
         },
         remove(state, id){
             state.products = state.products.filter(pr => pr.id !== id)
+        },
+        setCnt(state, { id, cnt }){
+            let i = state.products.findIndex(pr => pr.id === id);
+            state.products[i].cnt = Math.max(1, cnt);
         }
     },
     actions:{
@@ -31,6 +35,11 @@ export default {
         remove(store, id){
             if (store.getters.has(id)){
                 store.commit('remove', id)
+            }
+        },
+        setCnt(store, payload){
+            if (store.getters.has(payload.id)){
+                store.commit('setCnt', payload)
             }
         }
     }
